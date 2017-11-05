@@ -1,0 +1,20 @@
+version: "3"
+services:
+  frontback:
+    build:
+      context: .
+      # args:
+      #   HTTP_PROXY: "$HTTP_PROXY"
+      #   HTTPS_PROXY: "$HTTPS_PROXY"
+    image: fb
+    environment:
+      - PORT=$PORT
+      - SS=$SS
+      - LOG_LEVEL=$LOG_LEVEL
+    ports:
+      - "$PORT:3000"
+
+networks:
+  default:
+    external:
+      name: ubernet
