@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "../user.service";
+import { User } from "../user";
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: "app-table",
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.css"]
 })
 export class TableComponent implements OnInit {
+  constructor(private userService: UserService) {}
 
-  constructor() { }
+  users: User[];
 
-  ngOnInit() {
+  getUsers(): void {
+    this.userService.getUsers().then(users => {
+      console.log(users);
+      this.users = users;
+    });
   }
 
+  click(): void {
+    console.log(this.users);
+  }
+
+  ngOnInit() {
+    this.getUsers();
+  }
 }
