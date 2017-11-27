@@ -8,6 +8,7 @@ import { TopbarComponent } from "./topbar/topbar.component";
 import { CreateFormComponent } from "./create-form/create-form.component";
 import { TableComponent } from "./table/table.component";
 import { UserService } from "./user.service";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserService } from "./user.service";
     SidebarComponent,
     TopbarComponent,
     CreateFormComponent,
-    TableComponent
+    TableComponent,
+    LoginComponent
   ],
   imports: [BrowserModule, HttpModule],
   providers: [UserService],
