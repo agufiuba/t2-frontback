@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from "firebase";
-import { AngularFireDatabase } from "angularfire2/database";
+import { UserService } from "./user.service";
+import "rxjs/add/operator/toPromise";
 
 @Component({
   selector: "app-root",
@@ -9,16 +10,12 @@ import { AngularFireDatabase } from "angularfire2/database";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
-    afAuth.authState.subscribe(function(a) {
-      console.log(a.uid);
-      this.admin = db.object("admins/MvHD1b7yYxa7rzQ1XsxMVo6Yvgy1");
-    });
+  constructor(public afAuth: AngularFireAuth, public userService: UserService) {
+    // this.admin = afAuth.authState.toPromise().then(u => {
+    //   return userService.isAdmin(u.uid).then(x => { return x[0] })
+    // })
+    this.admin = userService.getUsers().then(x => { return x[0] })
   }
   title = "app";
-  isAdmin2;
-  isAdmin(uid: String) {
-    // console.log(uid);
-    // return this.db.object("admins/" + uid).valueChanges();
-  }
+  public admin;
 }

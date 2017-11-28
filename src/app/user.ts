@@ -4,4 +4,5 @@ export class User {
   last_name: string;
   mail: string;
   type: number;
+  saldo: number;
 }

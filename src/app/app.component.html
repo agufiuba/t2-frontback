@@ -1,15 +1,15 @@
 <app-topbar></app-topbar>
 
-<div *ngIf="afAuth.authState | async; let user; else showLogin">
-    {{user.uid}}
-    <div *ngIf="db.object("admins/" + user.uid).valueChanges() | async; let a">
-        {{a}}
+<!-- <div *ngIf="afAuth.authState | async; let user; else showLogin">
+    {{user.uid}} -->
+    <div *ngIf="admin | async; let a">
+        <!-- <h1>asd{{a.name}}</h1> -->
         <div *ngIf="a == 1; else showLogin">
             <app-create-form></app-create-form>
             <app-table></app-table>
         </div>
     </div>
-</div>
+<!-- </div> -->
 <ng-template #showLogin>
-    <app-login></app-login>
+    <app-login #login></app-login>
 </ng-template>
