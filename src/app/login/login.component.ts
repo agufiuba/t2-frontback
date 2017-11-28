@@ -10,7 +10,6 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   login() {
-    console.log("login")
     this.userService.login()
   }
 
