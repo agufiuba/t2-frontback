@@ -37,16 +37,6 @@ export class UserService {
     this.afAuth.auth.signOut();
   }
 
-  isAdmin(uid: String) {
-    return this.http
-      .get(direccion + "/permisos/" + uid)
-      .toPromise()
-      .then(response => {
-        return response
-      })
-      .catch(this.handleError)
-  }
-
   private handleError(error: any): Promise<any> {
     console.error("An error occurred", error);
     return Promise.reject(error.message || error);

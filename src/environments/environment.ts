@@ -10,5 +10,6 @@ export const environment = {
     apiKey: "AIzaSyDAkSl9LK4IHsaJynBY8uutraaqluEfLII",
     authDomain: "t2t2-9753f.firebaseapp.com",
     databaseURL: "https://t2t2-9753f.firebaseio.com/"
-  }
+  },
+  uid: "",
 };

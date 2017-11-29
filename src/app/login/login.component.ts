@@ -9,6 +9,9 @@ import { UserService } from "../user.service";
 export class LoginComponent implements OnInit {
   constructor(private userService: UserService) { }
 
+  correo: string
+  pass: string
+
   login() {
     this.userService.login()
   }
