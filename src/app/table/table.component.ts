@@ -61,8 +61,6 @@ export class TableComponent implements OnInit {
     this.userService.createUser(u).then(response => {
       this.getUsers();
     });
-
-    this.userService.payments().then(x => console.log(x));
   }
 
   canCreate() {
