@@ -3,6 +3,7 @@ import { environment } from "../../environments/environment";
 import { UserService } from "../user.service";
 import { User } from "../user";
 import { Permiso } from "../permiso";
+import { Payment } from "../payment";
 
 @Component({
   selector: "app-table",
@@ -18,12 +19,22 @@ export class TableComponent implements OnInit {
   correo: string;
   tipo: number;
   permisos: Permiso[];
+  payments: Payment[];
+  seeing: number = 1;
 
   getUsers(): void {
     this.userService.getUsers().then(users => {
       this.users = users;
     });
+  }
 
+  getPayments() {
+    this.userService.payments().then(ps => {
+      this.payments = ps;
+    });
+  }
+
+  getPermisos() {
     this.userService.permisos().then(ps => {
       this.permisos = ps;
     });
@@ -31,6 +42,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.getPermisos();
   }
 
   type(t) {
@@ -49,6 +61,8 @@ export class TableComponent implements OnInit {
     this.userService.createUser(u).then(response => {
       this.getUsers();
     });
+
+    this.userService.payments().then(x => console.log(x));
   }
 
   canCreate() {
@@ -68,5 +82,26 @@ export class TableComponent implements OnInit {
       return this.permisos.length != 0;
     }
     return false;
+  }
+
+  canSeePayments() {
+    if (this.permisos) {
+      var i = 0;
+      var found = false;
+      while (i < this.permisos.length && !found) {
+        found = this.permisos[i].permiso == 3;
+        i++;
+      }
+      return found;
+    }
+  }
+
+  seePayments() {
+    this.getPayments();
+    this.seeing = 2;
+  }
+
+  seeUsers() {
+    this.seeing = 1;
   }
 }

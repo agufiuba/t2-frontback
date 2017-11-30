@@ -6,8 +6,9 @@ import * as firebase from "firebase";
 import "rxjs/add/operator/toPromise";
 import { environment } from "../environments/environment";
 import { Permiso } from "./permiso";
+import { Payment } from "./payment";
 
-var direccion = "http://localhost:4000";
+var direccion = "http://192.168.99.100:4000";
 
 @Injectable()
 export class UserService {
@@ -71,6 +72,22 @@ export class UserService {
       .then(response => {
         return response.json() as Permiso[];
       })
+      .catch(this.handleError);
+  }
+
+  payments() {
+    return this.http
+      .get(direccion + "/payments")
+      .toPromise()
+      .then(response => {
+        return response.json().items as Payment[];
+      })
+      // .then(ps => {
+      //   var i = 0;
+      //   while (i < ps.length) {
+      //     ps[i].transaction_id = ps[i].transaction_id.substring(0, )
+      //   }
+      // })
       .catch(this.handleError);
   }
 }

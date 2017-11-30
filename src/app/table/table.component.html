@@ -1,58 +1,85 @@
 <div *ngIf="isAdmin(); else notAdmin">
-  <div class="row" style="background-color:#efefef; padding-top:20px" *ngIf="canCreate()">
-    <div class="input-field col s2">
-      <input id="name" type="text" [(ngModel)]="nombre">
-      <label for="name">Nombre</label>
+  <div *ngIf="seeing == 1">
+    <div class="row" style="background-color:#efefef; padding-top:20px" *ngIf="canCreate()">
+      <div class="input-field col s2">
+        <input id="name" type="text" [(ngModel)]="nombre">
+        <label for="name">Nombre</label>
+      </div>
+
+      <div class="input-field col s2">
+        <input id="lastname" type="text" [(ngModel)]="apellido">
+        <label for="lastname">Apellido</label>
+      </div>
+
+      <div class="input-field col s2">
+        <input id="mail" type="text" [(ngModel)]="correo">
+        <label for="mail">Correo</label>
+      </div>
+
+      <div class="col s4" style="margin-top:20px">
+        <form action="#">
+          <input class="with-gap" name="role" type="radio" id="rolePasajero" [(ngModel)]="tipo" value="1" checked>
+          <label for="rolePasajero">Pasajero</label>
+          <input class="with-gap" name="role" type="radio" id="roleChofer" [(ngModel)]="tipo" value="2">
+          <label for="roleChofer">Chofer</label>
+        </form>
+      </div>
+
+      <div class="col1 offset-s1" style="margin-top:20px">
+        <a class="waves-effect waves-light btn blue-grey darken-3" (click)="create()">crear</a>
+      </div>
     </div>
 
-    <div class="input-field col s2">
-      <input id="lastname" type="text" [(ngModel)]="apellido">
-      <label for="lastname">Apellido</label>
-    </div>
+    <div style="padding-left: 10px; padding-right: 10px">
+      <table class="bordered">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Saldo</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
 
-    <div class="input-field col s2">
-      <input id="mail" type="text" [(ngModel)]="correo">
-      <label for="mail">Correo</label>
-    </div>
-
-    <div class="col s4" style="margin-top:20px">
-      <form action="#">
-        <input class="with-gap" name="role" type="radio" id="rolePasajero" [(ngModel)]="tipo" value="1" checked>
-        <label for="rolePasajero">Pasajero</label>
-        <input class="with-gap" name="role" type="radio" id="roleChofer" [(ngModel)]="tipo" value="2">
-        <label for="roleChofer">Chofer</label>
-      </form>
-    </div>
-
-    <div class="col1 offset-s1" style="margin-top:20px">
-      <a class="waves-effect waves-light btn blue-grey darken-3" (click)="create()">crear</a>
+        <tbody>
+          <tr *ngFor="let u of users">
+            <td>{{u.name}}</td>
+            <td>{{u.last_name}}</td>
+            <td>{{u.mail}}</td>
+            <td>{{u.saldo}}</td>
+            <td>{{type(u.type)}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <div style="padding-left: 10px; padding-right: 10px">
-    <table class="bordered">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Correo</th>
-          <th>Saldo</th>
-          <th>Rol</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let u of users">
-          <td>{{u.name}}</td>
-          <td>{{u.last_name}}</td>
-          <td>{{u.mail}}</td>
-          <td>{{u.saldo}}</td>
-          <td>{{type(u.type)}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="seeing == 2">
+    <div style="padding-left: 10px; padding-right: 10px">
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Currency</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let p of payments">
+              <td>{{p.transaction_id}}</td>
+              <td>{{p.currency}}</td>
+              <td>{{p.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  <div class="fixed-action-btn horizontal" *ngIf="canSeePayments()">
+    <a class="btn-floating btn-large blue darken-4" style="font-size:22" *ngIf="seeing == 1" (click)="seePayments()">$</a>
+    <a class="btn-floating btn-large blue darken-4" style="font-size:14" *ngIf="seeing == 2" (click)="seeUsers()">users</a>
   </div>
 </div>
 <ng-template #notAdmin>
-    <h1 class="center red-text">Not admin</h1>>
+  <h1 class="center red-text">Not admin</h1>>
 </ng-template>
