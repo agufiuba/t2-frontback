@@ -1,6 +1,5 @@
-<app-topbar></app-topbar>
-
 <div *ngIf="afAuth.authState | async; let user; else showLogin">
+	<app-topbar></app-topbar>
     <app-create-form></app-create-form>
     <app-table></app-table>
 </div>

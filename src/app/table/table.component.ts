@@ -26,4 +26,9 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
   }
+
+  type(t) {
+    if (t == "1") return "Pasajero"
+    else return "Chofer"
+  }
 }
