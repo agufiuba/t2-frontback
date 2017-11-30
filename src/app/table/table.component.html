@@ -1,19 +1,58 @@
-<div style="padding-left: 10px; padding-right: 10px">
-  <table class="bordered">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Correo</th>
-        <th>Rol</th>
-      </tr>
-    </thead>
+<div *ngIf="isAdmin(); else notAdmin">
+  <div class="row" style="background-color:#efefef; padding-top:20px" *ngIf="canCreate()">
+    <div class="input-field col s2">
+      <input id="name" type="text" [(ngModel)]="nombre">
+      <label for="name">Nombre</label>
+    </div>
 
-    <tbody>
-      <tr><td>Agustin</td><td>Gaillard</td><td>agu@gmail.com</td><td>Chofer</td></tr>
-      <tr><td>Darius</td><td>Maitia</td><td>darius@gmail.com</td><td>Pasajero</td></tr>
-      <tr><td>Cristian</td><td>Gonzalez</td><td>cristian@gmail.com</td><td>Chofer</td></tr>
-      <tr><td>Tomas</td><td>Arjovsky</td><td>tomas@gmail.com</td><td>Pasajero</td></tr>
-    </tbody>
-  </table>
+    <div class="input-field col s2">
+      <input id="lastname" type="text" [(ngModel)]="apellido">
+      <label for="lastname">Apellido</label>
+    </div>
+
+    <div class="input-field col s2">
+      <input id="mail" type="text" [(ngModel)]="correo">
+      <label for="mail">Correo</label>
+    </div>
+
+    <div class="col s4" style="margin-top:20px">
+      <form action="#">
+        <input class="with-gap" name="role" type="radio" id="rolePasajero" [(ngModel)]="tipo" value="1" checked>
+        <label for="rolePasajero">Pasajero</label>
+        <input class="with-gap" name="role" type="radio" id="roleChofer" [(ngModel)]="tipo" value="2">
+        <label for="roleChofer">Chofer</label>
+      </form>
+    </div>
+
+    <div class="col1 offset-s1" style="margin-top:20px">
+      <a class="waves-effect waves-light btn blue-grey darken-3" (click)="create()">crear</a>
+    </div>
+  </div>
+
+  <div style="padding-left: 10px; padding-right: 10px">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Saldo</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{u.name}}</td>
+          <td>{{u.last_name}}</td>
+          <td>{{u.mail}}</td>
+          <td>{{u.saldo}}</td>
+          <td>{{type(u.type)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<ng-template #notAdmin>
+    <h1 class="center red-text">Not admin</h1>>
+</ng-template>
