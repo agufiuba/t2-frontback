@@ -7,7 +7,9 @@ RUN chown -R node /app
 USER node
 
 ADD package.json /app
-RUN npm config set registry "http://registry.npmjs.org/" && npm i && npm i @angular/cli
+RUN npm config set registry "http://registry.npmjs.org/"
+RUN npm --proxy http://dafip\U44058:coca25cola@wwwafip:80 i
+RUN npm --proxy http://dafip\U44058:coca25cola@wwwafip:80 i @angular/cli
 
 ADD . /app
 

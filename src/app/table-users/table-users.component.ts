@@ -6,11 +6,11 @@ import { Permiso } from "../permiso";
 import { Payment } from "../payment";
 
 @Component({
-  selector: "app-table",
-  templateUrl: "./table.component.html",
-  styleUrls: ["./table.component.css"]
+  selector: "app-table-users",
+  templateUrl: "./tableUsers.component.html",
+  styleUrls: ["./tableUsers.component.css"]
 })
-export class TableComponent implements OnInit {
+export class TableUsersComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   users: User[];

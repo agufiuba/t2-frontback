@@ -10,17 +10,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { TopbarComponent } from "./topbar/topbar.component";
-import { TableComponent } from "./table/table.component";
+import { TableUsersComponent } from "./tableUsers/tableUsers.component";
 import { UserService } from "./user.service";
 import { LoginComponent } from "./login/login.component";
+import { TablePaymentsComponent } from './table-payments/table-payments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     TopbarComponent,
-    TableComponent,
-    LoginComponent
+    TableUsersComponent,
+    LoginComponent,
+    TablePaymentsComponent
   ],
   imports: [
     FormsModule,

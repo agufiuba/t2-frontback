@@ -1,8 +1,24 @@
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper blue-grey darken-3">
-      <a class="brand-logo" style="margin-left:20px">Llevame</a>
-      <a class="right waves-effect waves-light btn blue-grey darken-1" style="margin-top:15px;margin-right:15px" (click)="logout()">sign out</a>
-    </div>
-  </nav>
+<nav class="nav-extended">
+  <div class="nav-wrapper blue-grey darken-3">
+    <a class="brand-logo" style="margin-left:20px">Llevame</a>
+    <a class="right waves-effect waves-light btn blue-grey darken-2" style="margin-top:15px;margin-right:15px" (click)="logout()">sign out</a>
+  </div>
+  <div class="nav-content blue-grey darken-2">
+    <ul class="tabs tabs-transparent">
+      <li class="tab">
+        <a class="active" href="#viewUsers">Usuarios</a>
+      </li>
+      <li class="tab">
+        <a href="#viewPagos">Pagos</a>
+      </li>
+      <li class="tab">
+        <a href="#viewRules">Reglas</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="viewUsers" class="col s12">
+  <app-table-users></app-table-users>
 </div>
+<div id="viewPagos" class="col s12">Test 2</div>
+<div id="viewRules" class="col s12">Test 4</div>
