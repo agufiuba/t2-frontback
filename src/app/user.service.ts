@@ -7,8 +7,9 @@ import "rxjs/add/operator/toPromise";
 import { environment } from "../environments/environment";
 import { Permiso } from "./permiso";
 import { Payment } from "./payment";
+import { Rule } from "./rule";
 
-var direccion = "https://t2-shared-server.herokuapp.com";
+var direccion = "http://192.168.99.100:4000";
 
 @Injectable()
 export class UserService {
@@ -82,12 +83,53 @@ export class UserService {
       .then(response => {
         return response.json().items as Payment[];
       })
-      // .then(ps => {
-      //   var i = 0;
-      //   while (i < ps.length) {
-      //     ps[i].transaction_id = ps[i].transaction_id.substring(0, )
-      //   }
-      // })
+      .catch(this.handleError);
+  }
+
+  rules() {
+    return this.http
+      .get(direccion + "/rules")
+      .toPromise()
+      .then(response => {
+        return response.json() as Rule[];
+      })
+      .catch(this.handleError);
+  }
+
+  actualizarRule(rule: Rule) {
+    return this.http
+      .put(
+        direccion +
+          "/rules?descripcion=" +
+          rule.descripcion +
+          "&valor=" +
+          rule.valor,
+        {}
+      )
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  actualizarRules(rules: Rule[]) {
+    rules.forEach(r => {
+      this.actualizarRule(r);
+    });
+  }
+
+  getServers() {
+    return this.http
+      .get(direccion + "/logged")
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  logoutServer(id) {
+    return this.http
+      .delete(direccion + "/logged/" + id)
+      .toPromise()
       .catch(this.handleError);
   }
 }

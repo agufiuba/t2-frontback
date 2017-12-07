@@ -1,0 +1,37 @@
+<div class="row" style="margin-top:20px">
+  <div class="row">
+    <div class="input-field col s5">
+      <span style="font-size:18px">Precio minimo para pasajeros</span>
+      <input id="pminimo" value="{{pMinimo}}" [(ngModel)]="pMinimo" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s5">
+      <span style="font-size:18px">Precio por kilometro para pasajeros</span>
+      <input id="pminimo" value="{{pPPK}}" [(ngModel)]="pPPK" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s5">
+      <span style="font-size:18px">Bonificacion para pasajeros en el primer viaje (%)</span>
+      <input id="pminimo" value="{{primerViaje}}" [(ngModel)]="nombre" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s5">
+      <span style="font-size:18px">Precio minimo para choferes</span>
+      <input id="pminimo" value="{{cMinimo}}" [(ngModel)]="cMinimo" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s5">
+      <span style="font-size:18px">Precio por kilometro para choferes</span>
+      <input id="pminimo" value="{{cPPK}}" [(ngModel)]="cPPK" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s5">
+      <a class="waves-effect waves-light btn blue-grey darken-2" (click)="actualizarRules()">actualizar</a>
+    </div>
+  </div>
+</div>

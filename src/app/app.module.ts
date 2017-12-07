@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { TopbarComponent } from "./topbar/topbar.component";
-import { TableUsersComponent } from "./tableUsers/tableUsers.component";
+import { TableUsersComponent } from "./table-users/table-users.component";
 import { UserService } from "./user.service";
 import { LoginComponent } from "./login/login.component";
 import { TablePaymentsComponent } from './table-payments/table-payments.component';
+import { RulesComponent } from './rules/rules.component';
+import { ServerComponent } from './server/server.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { TablePaymentsComponent } from './table-payments/table-payments.componen
     TopbarComponent,
     TableUsersComponent,
     LoginComponent,
-    TablePaymentsComponent
+    TablePaymentsComponent,
+    RulesComponent,
+    ServerComponent
   ],
   imports: [
     FormsModule,

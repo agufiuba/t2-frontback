@@ -4,14 +4,18 @@ import { UserService } from "../user.service";
 import { User } from "../user";
 import { Permiso } from "../permiso";
 import { Payment } from "../payment";
+import { AngularFireAuth } from "angularfire2/auth";
 
 @Component({
   selector: "app-table-users",
-  templateUrl: "./tableUsers.component.html",
-  styleUrls: ["./tableUsers.component.css"]
+  templateUrl: "./table-users.component.html",
+  styleUrls: ["./table-users.component.css"]
 })
 export class TableUsersComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(
+    public afAuth: AngularFireAuth,
+    private userService: UserService
+  ) {}
 
   users: User[];
   nombre: string;
@@ -28,12 +32,6 @@ export class TableUsersComponent implements OnInit {
     });
   }
 
-  getPayments() {
-    this.userService.payments().then(ps => {
-      this.payments = ps;
-    });
-  }
-
   getPermisos() {
     this.userService.permisos().then(ps => {
       this.permisos = ps;
@@ -41,8 +39,12 @@ export class TableUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsers();
-    this.getPermisos();
+    this.afAuth.authState.subscribe(x => {
+      if (x) {
+        this.getUsers();
+        this.getPermisos();
+      }
+    });
   }
 
   type(t) {
@@ -80,23 +82,6 @@ export class TableUsersComponent implements OnInit {
       return this.permisos.length != 0;
     }
     return false;
-  }
-
-  canSeePayments() {
-    if (this.permisos) {
-      var i = 0;
-      var found = false;
-      while (i < this.permisos.length && !found) {
-        found = this.permisos[i].permiso == 3;
-        i++;
-      }
-      return found;
-    }
-  }
-
-  seePayments() {
-    this.getPayments();
-    this.seeing = 2;
   }
 
   seeUsers() {

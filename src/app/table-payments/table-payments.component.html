@@ -1,3 +1,31 @@
-<p>
-  table-payments works!
-</p>
+<div>
+  <div class="row" style="background-color:#efefef; padding:10px;padding-top:20px">
+    <span style="font-size:20px;margin-top:20px">Mostrando elementos {{limitStart}} - {{limitEnd}} de {{paymentsSize}}</span>
+    <a class="right waves-effect waves-light btn blue-grey darken-2" (click)="refresh()">actualizar</a>
+    <br>
+    <ul class="pagination">
+      <li class="waves-effect active" *ngFor="let i of numberOfPages" [ngClass]="{'active blue-grey darken-3': i == page}" (click)="changePage(i)">
+        <a>{{i}}</a>
+      </li>
+    </ul>
+  </div>
+  <div style="padding: 10px">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th width="50%">Transaction ID</th>
+          <th width="25%">Currency</th>
+          <th width="25%">Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of pagePayments">
+          <td>{{p.transaction_id}}</td>
+          <td>{{p.currency}}</td>
+          <td>{{p.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

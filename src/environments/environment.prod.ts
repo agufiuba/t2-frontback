@@ -7,4 +7,5 @@ export const environment = {
     databaseURL: "https://t2t2-9753f.firebaseio.com/"
   },
   uid: "",
+  logged: false
 };

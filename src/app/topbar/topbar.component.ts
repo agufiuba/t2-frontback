@@ -10,7 +10,6 @@ export class TopbarComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   logout() {
-    console.log("logout")
     this.userService.logout();
   }
 

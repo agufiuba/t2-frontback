@@ -1,7 +1,4 @@
-<!-- <div *ngIf="afAuth.authState | async; let user; else showLogin"> -->
-	<app-topbar></app-topbar>
-    <!-- <app-table></app-table> -->
-<!-- </div>
-<ng-template #showLogin>
-    <app-login #login></app-login>
-</ng-template> -->
+<app-topbar [hidden]="!logged"></app-topbar>
+<!-- <ng-template #showLogin> -->
+    <app-login #login [hidden]="logged"></app-login>
+<!-- </ng-template> -->
