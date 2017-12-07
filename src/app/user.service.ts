@@ -9,7 +9,7 @@ import { Permiso } from "./permiso";
 import { Payment } from "./payment";
 import { Rule } from "./rule";
 
-var direccion = "http://192.168.99.100:4000";
+var direccion = "https://t2-shared-server.herokuapp.com";
 
 @Injectable()
 export class UserService {
