@@ -13,9 +13,10 @@
     <table class="bordered">
       <thead>
         <tr>
-          <th width="50%">Transaction ID</th>
-          <th width="25%">Currency</th>
-          <th width="25%">Value</th>
+          <th width="40%">Transaction ID</th>
+          <th width="20%">Currency</th>
+          <th width="20%">Value</th>
+          <th width="20%">Method</th>
         </tr>
       </thead>
 
@@ -24,6 +25,7 @@
           <td>{{p.transaction_id}}</td>
           <td>{{p.currency}}</td>
           <td>{{p.value}}</td>
+          <td>{{p.paymentMethod.method}}</td>
         </tr>
       </tbody>
     </table>

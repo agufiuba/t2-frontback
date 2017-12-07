@@ -50,7 +50,6 @@ export class TablePaymentsComponent implements OnInit {
   }
 
   refresh() {
-    console.log("asd")
     this.page = 1;
     this.payments = [];
     this.pagePayments = [];
